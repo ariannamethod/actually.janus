@@ -5018,7 +5018,9 @@ const vocab=new Map(),words=[];
 const tokId=w=>{let id=vocab.get(w);if(id===undefined){id=words.length;words.push(w);vocab.set(w,id);}return id;};
 const isBoundary=t=>{const w=words[t];return w==='.'||w==='!'||w==='?';};
 const isPunct=t=>{const w=words[t];return w.length===1&&!/[\p{L}\p{N}]/u.test(w)||w==='—';};
-const isContent=t=>!isPunct(t)&&!STOP.has(words[t])&&words[t].length>2;
+/* the corpus brings its own stop list: the short tokens that cover its first 1% of text (any alphabet) */
+const CSTOP=new Set();
+const isContent=t=>!isPunct(t)&&!STOP.has(words[t])&&!CSTOP.has(t)&&words[t].length>2;
 function tokenize(text){const out=[];const re=/[\p{L}\p{N}][\p{L}\p{N}'’\-]*|[.!?]+|[,;:]|—|--/gu;let m;
   while((m=re.exec(text))){let s=m[0];if(/^[.!?]+$/.test(s))s=s[0];else if(s==='--')s='—';else s=s.toLowerCase().replace(/’/g,"'");out.push(tokId(s));}
   return out;}
@@ -5036,6 +5038,8 @@ function buildField(text){
   F.uni=[];F.succ=[];F.pred=[];F.triS=new Map();F.triP=new Map();F.heb=new Map();F.bi=new Map();F.tri=new Map();F.sentences=[];
   const T=tokenize(text);F.N=T.length;
   for(const t of T)F.uni[t]=(F.uni[t]||0)+1;
+  CSTOP.clear();{const cand=[];for(let t=0;t<words.length;t++)if(F.uni[t]&&!isPunct(t)&&words[t].length<=4&&words[t].length>2)cand.push(t);
+    cand.sort((a,b)=>F.uni[b]-F.uni[a]);let cov=0;for(const t of cand){if(cov>=0.01*F.N&&CSTOP.size>=8)break;CSTOP.add(t);cov+=F.uni[t];}}
   for(let i=0;i<T.length;i++){
     if(i+1<T.length){inc(F.bi,kb(T[i],T[i+1]));incList(F.succ,T[i],T[i+1]);incList(F.pred,T[i+1],T[i]);}
     if(i+2<T.length){inc(F.tri,kt(T[i],T[i+1],T[i+2]));incNest(F.triS,kb(T[i],T[i+1]),T[i+2]);incNest(F.triP,kb(T[i+1],T[i+2]),T[i]);}

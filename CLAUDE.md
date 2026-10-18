@@ -16,6 +16,10 @@ Fable on Claude Desktop builds the layers. Don (Fable, terminal) audits. Oleg me
 - Numbers in README and TRUELOG come from real runs and carry their date. A stale number is marked as lineage, not passed off as current evidence.
 - Commits follow the Method convention: verified technical body, a unique quote, a Method line, the attribution signature. A quote is either a classic that exists and is checked, or your own line signed with your own name — an invented line under a borrowed name is the one forbidden combination (Oleg's rule, 2026-10-18). Classics keep priority.
 
+## The silent fallback (Oleg's standing law, 2026-10-18)
+
+`janus.html` is the whole organism. Anything that later lives outside it — weights, a second corpus, a mycelium store — is an organ the file knows how to not have. Absent organ, absent sentence: no refusal line in the ledger, no disabled button, the header simply stays `field · no weights`. The test is to open `janus.html` from an empty folder; it must not notice that anything is missing.
+
 ## Second layer (orientation, not a mandate)
 
 haiku1/haiku2 GGUF as two faces — A reads time forward, B restores the past by retrodiction through the seam; double printing driven by α; wormhole; debt that survives sessions. Each piece enters by Oleg's word.

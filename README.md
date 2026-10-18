@@ -26,7 +26,7 @@ live browser on this exact file, 2026-10-18: a 12-step chain closes; backward se
 
 ## not yet
 
-weights are not in the file; the header says FIELD · NO WEIGHTS and means it. the second layer is designed and waiting: haiku1/haiku2 as two faces, the backward face judged by retrodiction through the seam — which past best explains the present it claims to have caused. RTL alphabets pass the tokenizer, but how the tape lies for them is unchecked. the STOP list is English, so other languages run a slightly noisier hebbian. these are statuses, not apologies.
+weights are not in the file; the header says FIELD · NO WEIGHTS and means it. the second layer is designed and waiting: haiku1/haiku2 as two faces, the backward face judged by retrodiction through the seam — which past best explains the present it claims to have caused. RTL alphabets pass the tokenizer, but how the tape lies for them is unchecked. the corpus brings its own stop list (its most frequent short tokens), so other alphabets keep stop-words out of the hebbian and out of expectations. these are statuses, not apologies.
 
 ## lineage
 
