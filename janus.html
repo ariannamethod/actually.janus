@@ -1,3 +1,4 @@
+<meta charset="utf-8">
 <title>JANUS</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <style>
@@ -5016,9 +5017,9 @@ const STOP=new Set("i me my we our you your he she it they them the a an and or 
 const vocab=new Map(),words=[];
 const tokId=w=>{let id=vocab.get(w);if(id===undefined){id=words.length;words.push(w);vocab.set(w,id);}return id;};
 const isBoundary=t=>{const w=words[t];return w==='.'||w==='!'||w==='?';};
-const isPunct=t=>{const w=words[t];return w.length===1&&!/[a-z0-9]/.test(w)||w==='—';};
+const isPunct=t=>{const w=words[t];return w.length===1&&!/[\p{L}\p{N}]/u.test(w)||w==='—';};
 const isContent=t=>!isPunct(t)&&!STOP.has(words[t])&&words[t].length>2;
-function tokenize(text){const out=[];const re=/[A-Za-z0-9][A-Za-z0-9'’\-]*|[.!?]+|[,;:]|—|--/g;let m;
+function tokenize(text){const out=[];const re=/[\p{L}\p{N}][\p{L}\p{N}'’\-]*|[.!?]+|[,;:]|—|--/gu;let m;
   while((m=re.exec(text))){let s=m[0];if(/^[.!?]+$/.test(s))s=s[0];else if(s==='--')s='—';else s=s.toLowerCase().replace(/’/g,"'");out.push(tokId(s));}
   return out;}
 function render(toks){let s='';for(const t of toks){const w=words[t];
